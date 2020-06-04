@@ -1,8 +1,9 @@
 package tutorial.action;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
-import org.seasar.framework.aop.annotation.RemoveSession;
+import org.seasar.framework.beans.util.Beans;
 import org.seasar.struts.annotation.ActionForm;
 import org.seasar.struts.annotation.Execute;
 
@@ -17,6 +18,9 @@ public class LoginAction {
     public String password;
 
     @Resource
+    protected HttpSession session;
+
+    @Resource
     protected UserService userService;
 
     @ActionForm
@@ -24,20 +28,32 @@ public class LoginAction {
     protected UserForm userForm;
 
     @Resource
-    private UserDto userDto;
+    protected UserDto userDto;
 
     @Execute(validator =false)
-    @RemoveSession(name = "userDto")
     public String index() {
         return "index.jsp";
     }
 
 	@Execute(input = "index.jsp")
 	public String login() {
-	    try {
-            User user = userService.getUser(name,  password);
 
-            if (user != null) {
+	    /* 固定値設定
+	    User user = new User();
+	    user.id = 1L;
+	    user.name = "test1";
+	    user.email = "test1@seasar2.org";
+
+	    userForm.id = user.id;
+        userForm.name = user.name;
+        userForm.email = user.email;
+	    */
+
+	    User user = userService.getUser(userForm.name, userForm.password);
+
+        try {
+
+            if (user != null ) {
                 userDto.id = user.id;
                 userDto.name = user.name;
                 userDto.email = user.email;
@@ -45,6 +61,9 @@ public class LoginAction {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
+
+        Beans.copy(userDto, userForm).execute();
+
 		return "/user/menu.jsp";
 	}
 

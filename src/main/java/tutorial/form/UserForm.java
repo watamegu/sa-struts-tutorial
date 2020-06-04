@@ -17,4 +17,5 @@ public class UserForm implements Serializable {
 	public String email;
 
 	public String password;
+
 }

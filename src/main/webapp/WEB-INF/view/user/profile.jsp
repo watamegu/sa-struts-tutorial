@@ -1,7 +1,7 @@
 <%@page pageEncoding="UTF-8"%>
 <html>
 <head>
-<title>Tutorial: Add</title>
+<title>Tutorial: Profile</title>
 <link rel="stylesheet" type="text/css" href="${f:url('/css/sa.css')}" />
 </head>
 <body>
@@ -13,6 +13,7 @@
 <p>名前：${f:h(name)}</p><br />
 <p>Email：${f:h(email)}</p><br />
 <p></p>
+<a href="javascript:history.back()">戻る</a>
 <a href="logout">ログアウト</a>
 
 </body>

@@ -1,15 +1,21 @@
 package tutorial.entity;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class User {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
+
 	public String name;
+
 	public String email;
+
 	public String password;
 
 	public Long getId() {
