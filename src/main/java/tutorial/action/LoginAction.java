@@ -3,7 +3,6 @@ package tutorial.action;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.seasar.framework.beans.util.Beans;
 import org.seasar.struts.annotation.ActionForm;
 import org.seasar.struts.annotation.Execute;
 
@@ -38,20 +37,8 @@ public class LoginAction {
 	@Execute(input = "index.jsp")
 	public String login() {
 
-	    /* 固定値設定
-	    User user = new User();
-	    user.id = 1L;
-	    user.name = "test1";
-	    user.email = "test1@seasar2.org";
-
-	    userForm.id = user.id;
-        userForm.name = user.name;
-        userForm.email = user.email;
-	    */
-
-	    User user = userService.getUser(userForm.name, userForm.password);
-
-        try {
+	    try {
+	        User user = userService.getUser(userForm.name, userForm.password);
 
             if (user != null ) {
                 userDto.id = user.id;
@@ -61,8 +48,6 @@ public class LoginAction {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
-
-        Beans.copy(userDto, userForm).execute();
 
 		return "/user/menu.jsp";
 	}

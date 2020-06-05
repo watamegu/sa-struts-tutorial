@@ -23,11 +23,12 @@ public class UserService extends AbstractService<User> {
         int result =
             jdbcManager
                 .updateBySql(
-                    "INSERT INTO user VALUES(?,?,?)",
+                    "INSERT INTO user VALUES(?,?,?,?)",
+                        Long.class,
                         String.class,
                         String.class,
                         String.class)
-                    .params(name, email, password)
+                    .params(4L,name, email, password)
                     .execute();
 
         return result;

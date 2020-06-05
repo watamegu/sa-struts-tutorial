@@ -32,9 +32,23 @@
 		</property>
 		<property name="user">"sa"</property>
 		<property name="password"></property>
+		<destroyMethod>
+			@org.seasar.framework.util.DriverManagerUtil@deregisterAllDrivers()
+		</destroyMethod>
+	</component>
+<!--
+		<component name="connectionPool"
+		class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl">
+		<property name="timeout">600</property>
+		<property name="maxPoolSize">10</property>
+		<property name="allowLocalTx">true</property>
+		<destroyMethod name="close"/>
 	</component>
 
-
+	<component name="DataSource"
+		class="org.seasar.extension.dbcp.impl.DataSourceImpl"
+	/>
+-->
 	<!-- for Oracle -->
 	<!--
 	<component name="xaDataSource" ../
@@ -136,19 +150,6 @@
         <property name="user">"xxxx"</property>
         <property name="password">"xxxx"</property>
     </component>
-	-->
-	<!--
-	<component name="connectionPool"
-		class="org.seasar.extension.dbcp.impl.ConnectionPoolImpl">
-		<property name="timeout">600</property>
-		<property name="maxPoolSize">10</property>
-		<property name="allowLocalTx">true</property>
-		<destroyMethod name="close"/>
-	</component>
-
-	<component name="DataSource"
-		class="org.seasar.extension.dbcp.impl.DataSourceImpl"
-	/>
 	-->
 
 	<!-- from JNDI -->
