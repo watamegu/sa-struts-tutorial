@@ -1,6 +1,7 @@
 package tutorial.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.seasar.framework.container.annotation.tiger.Component;
 import org.seasar.framework.container.annotation.tiger.InstanceType;
@@ -17,5 +18,7 @@ public class UserDto implements Serializable {
 	public String email;
 
 	public String password;
+
+	public List<UserDto> userList;
 
 }

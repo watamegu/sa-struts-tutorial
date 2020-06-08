@@ -1,9 +1,12 @@
 package tutorial.form;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.seasar.framework.container.annotation.tiger.Component;
 import org.seasar.framework.container.annotation.tiger.InstanceType;
+
+import tutorial.dto.UserDto;
 
 @Component(instance = InstanceType.SESSION)
 public class UserForm implements Serializable {
@@ -17,5 +20,10 @@ public class UserForm implements Serializable {
 	public String email;
 
 	public String password;
+
+	public List<UserDto> userList;
+
+	//パラメータ用
+	public String strId;
 
 }

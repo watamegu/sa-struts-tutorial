@@ -1,8 +1,8 @@
 package tutorial.action;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
+import org.seasar.framework.beans.util.Beans;
 import org.seasar.struts.annotation.ActionForm;
 import org.seasar.struts.annotation.Execute;
 
@@ -13,18 +13,12 @@ import tutorial.service.UserService;
 
 public class LoginAction {
 
-    public String name;
-    public String password;
-
-    @Resource
-    protected HttpSession session;
-
-    @Resource
-    protected UserService userService;
-
     @ActionForm
     @Resource
     protected UserForm userForm;
+
+    @Resource
+    protected UserService userService;
 
     @Resource
     protected UserDto userDto;
@@ -38,18 +32,19 @@ public class LoginAction {
 	public String login() {
 
 	    try {
-	        User user = userService.getUser(userForm.name, userForm.password);
-
+	        User user = userService.loginUser(userForm.name, userForm.password);
             if (user != null ) {
-                userDto.id = user.id;
-                userDto.name = user.name;
-                userDto.email = user.email;
+                userForm.id = user.id;
+                userForm.name = user.name;
+                userForm.email = user.email;
+                userForm.password = user.password;
+                Beans.copy(userForm, userDto).execute();
+
             }
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
+		return "/user/menu?redirect=true";
 
-		return "/user/menu.jsp";
 	}
-
 }

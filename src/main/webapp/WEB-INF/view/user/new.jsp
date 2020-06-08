@@ -16,8 +16,9 @@
 <html:text property="email" value=""></html:text><br />
 <label for="password">パスワード</label>
 <input type="password" name="password" value=""><br />
-<p></p>
-<input type="submit" name="regist" value="ユーザー登録"/>
+<input type="submit" name="regist" value="作成"/>
 </s:form>
+<p></p>
+<a href="menu">戻る</a>
 </body>
 </html>

@@ -13,7 +13,7 @@
 <p>名前：${f:h(name)}</p><br />
 <p>Email：${f:h(email)}</p><br />
 <p></p>
-<a href="javascript:history.back()">戻る</a>
+<a href="menu">戻る</a>
 <a href="logout">ログアウト</a>
 
 </body>
