@@ -29,8 +29,6 @@ public class UserAction {
 	@Resource
 	protected UserDto userDto;
 
-	public static final String update_BINDING_METHOD = "path=/update/{strId}";
-
     @Execute(validator = false, urlPattern = "new")
     public String index() {
         return "new.jsp";
@@ -93,7 +91,7 @@ public class UserAction {
 	}
 
 	@Execute(validator = false)
-	@RemoveSession(name = "userForm")
+	@RemoveSession(name = "userDto")
 	public String logout() {
 		return "/login?redirect=true";
 	}

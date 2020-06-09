@@ -8,6 +8,7 @@ import org.seasar.struts.annotation.Execute;
 
 import tutorial.dto.UserDto;
 import tutorial.entity.User;
+import tutorial.form.MessageForm;
 import tutorial.form.UserForm;
 import tutorial.service.UserService;
 
@@ -16,6 +17,10 @@ public class LoginAction {
     @ActionForm
     @Resource
     protected UserForm userForm;
+
+    @ActionForm
+    @Resource
+    protected MessageForm messageForm;
 
     @Resource
     protected UserService userService;
@@ -39,7 +44,9 @@ public class LoginAction {
                 userForm.email = user.email;
                 userForm.password = user.password;
                 Beans.copy(userForm, userDto).execute();
-
+            } else {
+                messageForm.message = "ユーザーが存在しません。";
+                return "index.jsp";
             }
         } catch (IllegalArgumentException e) {
             e.printStackTrace();

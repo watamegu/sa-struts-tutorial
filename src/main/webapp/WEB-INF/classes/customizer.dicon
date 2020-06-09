@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN" 
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
     "http://www.seasar.org/dtd/components24.dtd">
 <components>
     <include path="default-customizer.dicon"/>
@@ -11,7 +11,7 @@
 
       ・interceptorName (String 型，必須)
         適用するインターセプタのコンポーネント名です．
-        addInterceptorName() メソッドで複数登録することもできます． 
+        addInterceptorName() メソッドで複数登録することもできます．
 
       ・pointcut (String 型，任意)
         インターセプタを適用するメソッドを選択するポイントカットを正規表現で指定します．
@@ -64,11 +64,11 @@
             </arg>
         </initMethod>
     </component>
-    
+
     <component name="formCustomizer"
         class="org.seasar.framework.container.customizer.CustomizerChain">
     </component>
-	
+
     <component name="serviceCustomizer"
         class="org.seasar.framework.container.customizer.CustomizerChain">
         <initMethod name="addAspectCustomizer">
@@ -78,6 +78,23 @@
             <arg>
                 <component
                     class="org.seasar.framework.container.customizer.TxAttributeCustomizer"/>
+            </arg>
+        </initMethod>
+        <initMethod name="addCustomizer">
+            <arg>
+                <component class="org.seasar.framework.container.customizer.AspectCustomizer">
+                    <property name="interceptorName">"loginInterceptor"</property>
+                    <!-- 対象とするパッケージ名及びクラス名を設定 -->
+              			<initMethod name="addClassPattern">
+                        <arg>"tutorial.action"</arg>
+                        <arg>".*"</arg>
+                    </initMethod>
+                    <!-- 除外するパッケージ名及びクラス名を設定 -->
+              		 <initMethod name="addIgnoreClassPattern">
+                        <arg>"tutorial.action"</arg>
+                        <arg>"LoginAction"</arg>
+                   </initMethod>
+                </component>
             </arg>
         </initMethod>
     </component>

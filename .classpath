@@ -9,7 +9,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/aopalliance-1.0.jar" sourcepath="/var/folders/g3/24dh7jt9309crvjfgqg0c_fm0000gn/T/.org.sf.feeling.decompiler1591578523989/source/aopalliance-1.0-sources.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-beanutils-1.7.0.jar" sourcepath="src/main/webapp/WEB-INF/libsrc/commons-beanutils-1.7.0-src.zip"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-collections-3.1.jar" sourcepath="src/main/webapp/WEB-INF/libsrc/commons-collections-3.1-sources.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-digester-1.6.jar"/>

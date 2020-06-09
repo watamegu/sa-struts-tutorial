@@ -27,6 +27,7 @@ Tomcatの設定はお済みですか?<br />
 
 <ul>
 <li><a href="http://sastruts.seasar.org/index.html">SAStrutsのサイト</a></li>
+<li><a href="login/">ユーザーチュートリアル</a></li>
 <li><a href="add/">フォームの練習</a></li>
 <li><a href="session/">セッションスコープのアクションフォーム</a></li>
 <li><a href="redirect/">他のサイトを表示</a></li>
