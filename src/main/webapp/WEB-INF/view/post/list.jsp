@@ -1,7 +1,7 @@
 <%@page pageEncoding="UTF-8"%>
 <html>
 <head>
-<title>Tutorial: Profile</title>
+<title>Tutorial:メモ一覧</title>
 <link rel="stylesheet" type="text/css" href="${f:url('/css/sa.css')}" />
 </head>
 <body>
@@ -17,7 +17,7 @@
 	<c:forEach var = "post" items = "${ postList }">
 		<tr>
 			<td>${f:h(post.id)}</td>
-			<td>${f:h(post.title)}</td>
+			<td><a href="show/${f:h(post.id)}">${f:h(post.title)}</a></td>
 		</tr>
 	</c:forEach>
 </table>
