@@ -1,9 +1,12 @@
 package tutorial.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -17,6 +20,10 @@ public class User {
 	public String email;
 
 	public String password;
+
+	@OneToMany(mappedBy = "user")
+	public List<Post> postList;
+
 
 	public Long getId() {
 		return id;

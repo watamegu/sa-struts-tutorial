@@ -51,7 +51,7 @@ public class LoginAction {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
-		return "/user/menu?redirect=true";
+		return "/post/list?redirect=true";
 
 	}
 }
