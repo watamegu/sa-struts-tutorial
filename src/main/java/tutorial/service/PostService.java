@@ -39,6 +39,20 @@ public class PostService extends AbstractService<User> {
                 return result;
     }
 
+    // 新規メモ作成
+    public int createPost(String title, String content, Long userId) {
+        int result =
+            jdbcManager
+                .updateBySql(
+                    "INSERT INTO post(title, content, user_id) VALUES(?,?,?)",
+                        String.class,
+                        String.class,
+                        Long.class)
+                .params(title, content, userId)
+                .execute();
+        return result;
+    }
+
     // メモ更新
     public int updatePost(Long id, String title, String content) {
         int result =

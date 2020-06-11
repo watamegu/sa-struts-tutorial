@@ -52,6 +52,22 @@ public class PostAction {
         return "show.jsp";
     }
 
+    @Execute(validator = false, urlPattern = "new")
+    public String newMemo() {
+        return "new.jsp";
+    }
+
+    @Execute(validator = false)
+    public String create() {
+        int result = postService.createPost(postForm.title, postForm.content, userDto.id);
+        if(result == 1) {
+            messageForm.message = "メモを作成しました。";
+        } else {
+            messageForm.message = "メモ作成に失敗しました。";
+        }
+        return "list?redirect=true";
+    }
+
     @Execute(validator = false, urlPattern = "edit/{strId}")
     public String edit() {
         userId = Long.parseLong(postForm.strId);
