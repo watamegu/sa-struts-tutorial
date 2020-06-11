@@ -1,10 +1,14 @@
 package tutorial.action;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.seasar.framework.beans.util.Beans;
 import org.seasar.struts.annotation.ActionForm;
 import org.seasar.struts.annotation.Execute;
+import org.seasar.struts.util.ActionMessagesUtil;
 
 import tutorial.dto.PostDto;
 import tutorial.dto.UserDto;
@@ -34,12 +38,13 @@ public class PostAction {
 
 	public Long userId;
 	public Long postId;
+	public HttpSession session;
 
 	@Execute(validator = false)
     public String list() {
         postForm.postList = postService.getAllPostsByUserId(userDto.id);
         if(postForm.postList.size() == 0) {
-            messageForm.message = "メモが存在しません。";
+            setMessages("メモが1件も存在しません。");
         }
         return "list.jsp";
     }
@@ -59,11 +64,12 @@ public class PostAction {
 
     @Execute(validator = false)
     public String create() {
+
         int result = postService.createPost(postForm.title, postForm.content, userDto.id);
         if(result == 1) {
-            messageForm.message = "メモを作成しました。";
+            setMessages("メモを作成しました");
         } else {
-            messageForm.message = "メモ作成に失敗しました。";
+            setMessages("メモ作成に失敗しました。");
         }
         return "list?redirect=true";
     }
@@ -81,9 +87,9 @@ public class PostAction {
         postId = Long.parseLong(postForm.strId);
         int result = postService.updatePost(postId, postForm.title, postForm.content);
         if(result == 1) {
-            messageForm.message = "メモを更新しました。";
+            setMessages("メモを更新しました。");
         } else {
-            messageForm.message = "メモ更新に失敗しました。";
+            setMessages("メモを更新に失敗しました。");
             return "edit/" + postForm.strId + "?redirect=true";
         }
         return "show/" + postForm.strId + "?redirect=true";
@@ -94,10 +100,16 @@ public class PostAction {
         postId = Long.parseLong(postForm.strId);
         int result = postService.destroyPost(postId);
         if(result == 1) {
-            messageForm.message = "メモを削除しました。";
+            setMessages("メモを削除しました。");
         } else {
-            messageForm.message = "メモ削除に失敗しました。";
+            setMessages("メモを削除に失敗しました。");
         }
         return "list?redirect=true";
+    }
+
+    private void setMessages(String message) {
+        ActionMessages messages = new ActionMessages();
+        messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(message, false));
+        ActionMessagesUtil.saveMessages(session, messages);
     }
 }

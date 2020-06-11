@@ -7,7 +7,10 @@
 <body>
 
 <h1>メモ詳細</h1>
-<p>${f:h(message)}</p>
+
+<html:messages id="message" message="true">
+<p>${message}</p>
+</html:messages>
 <p>タイトル：${f:h(title)}</p>
 <p>本文：</p>
 <p>${f:h(content)}</p>

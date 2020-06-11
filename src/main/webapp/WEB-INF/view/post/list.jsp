@@ -7,7 +7,10 @@
 <body>
 
 <h1>メモ一覧</h1>
-<p>${f:h(message)}</p>
+
+<html:messages id="message" message="true">
+<p>${message}</p>
+</html:messages>
 <table>
   <tr>
 		<td>ID</td>

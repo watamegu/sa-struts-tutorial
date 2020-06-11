@@ -8,7 +8,9 @@
 
 <h1>Login</h1>
 
-<p>${f:h(message)}</p><br />
+<html:messages id="message" message="true">
+<p>${message}</p>
+</html:messages>
 <s:form method="POST">
 <label for="name">ユーザー名</label>
 <html:text property="name" value=""></html:text><br />

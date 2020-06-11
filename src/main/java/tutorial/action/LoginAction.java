@@ -1,10 +1,14 @@
 package tutorial.action;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.seasar.framework.beans.util.Beans;
 import org.seasar.struts.annotation.ActionForm;
 import org.seasar.struts.annotation.Execute;
+import org.seasar.struts.util.ActionMessagesUtil;
 
 import tutorial.dto.UserDto;
 import tutorial.entity.User;
@@ -28,6 +32,8 @@ public class LoginAction {
     @Resource
     protected UserDto userDto;
 
+    public HttpSession session;
+
     @Execute(validator =false)
     public String index() {
         return "index.jsp";
@@ -45,7 +51,7 @@ public class LoginAction {
                 userForm.password = user.password;
                 Beans.copy(userForm, userDto).execute();
             } else {
-                messageForm.message = "ユーザーが存在しません。";
+                setMessages("ユーザーが存在しません。");
                 return "index.jsp";
             }
         } catch (IllegalArgumentException e) {
@@ -54,4 +60,10 @@ public class LoginAction {
 		return "/post/list?redirect=true";
 
 	}
+
+	private void setMessages(String message) {
+        ActionMessages messages = new ActionMessages();
+        messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(message, false));
+        ActionMessagesUtil.saveMessages(session, messages);
+    }
 }

@@ -7,7 +7,10 @@
 <body>
 
 <h1>メモ編集</h1>
-<p>${f:h(message)}</p>
+
+<html:messages id="message" message="true">
+<p>${message}</p>
+</html:messages>
 <s:form method="POST" action="/post/update/${f:h(strId)}/">
 	<label for="title">タイトル</label><br />
 	<html:text property="title" value="${f:h(title)}"></html:text><br />

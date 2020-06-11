@@ -1,11 +1,15 @@
 package tutorial.action;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.seasar.framework.aop.annotation.RemoveSession;
 import org.seasar.framework.beans.util.Beans;
 import org.seasar.struts.annotation.ActionForm;
 import org.seasar.struts.annotation.Execute;
+import org.seasar.struts.util.ActionMessagesUtil;
 
 import tutorial.dto.UserDto;
 import tutorial.entity.User;
@@ -28,6 +32,8 @@ public class UserAction {
 
 	@Resource
 	protected UserDto userDto;
+
+	public HttpSession session;
 
     @Execute(validator = false, urlPattern = "new")
     public String index() {
@@ -62,9 +68,9 @@ public class UserAction {
     public String update() {
         int result = userService.updateUser();
         if(result == 1) {
-            messageForm.message = "ユーザーを更新しました。";
+            setMessages("ユーザーを更新しました。");
         } else {
-            messageForm.message = "ユーザー更新に失敗しました。";
+            setMessages("ユーザー更新に失敗しました。");
         }
         return "edit/" + userForm.id;
     }
@@ -74,12 +80,12 @@ public class UserAction {
         if(userForm.id != Long.parseLong(userForm.strId)) {
             int result = userService.DestroyUser();
             if(result == 1) {
-                messageForm.message = "ユーザーを削除しました。";
+                setMessages("ユーザーを削除しました。");
             } else {
-                messageForm.message = "ユーザー削除に失敗しました。";
+                setMessages("ユーザー削除に失敗しました。");
             }
         } else {
-            messageForm.message = "ログインユーザーの削除はできません。";
+            setMessages("ログインユーザーの削除はできません。");
         }
         return "show";
     }
@@ -95,5 +101,11 @@ public class UserAction {
 	public String logout() {
 		return "/login?redirect=true";
 	}
+
+	private void setMessages(String message) {
+        ActionMessages messages = new ActionMessages();
+        messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(message, false));
+        ActionMessagesUtil.saveMessages(session, messages);
+    }
 
 }
