@@ -7,8 +7,7 @@
 <body>
 
 <h1>メモ一覧</h1>
-
-<p></p>
+<p>${f:h(message)}</p>
 <table>
   <tr>
 		<td>ID</td>

@@ -33,10 +33,14 @@ public class PostAction {
 	protected UserDto userDto;
 
 	public Long userId;
+	public Long postId;
 
 	@Execute(validator = false)
     public String list() {
         postForm.postList = postService.getAllPostsByUserId(userDto.id);
+        if(postForm.postList.size() == 0) {
+            messageForm.message = "メモが存在しません。";
+        }
         return "list.jsp";
     }
 
@@ -58,8 +62,8 @@ public class PostAction {
 
     @Execute(validator = false, urlPattern = "update/{strId}")
     public String update() {
-        userId = Long.parseLong(postForm.strId);
-        int result = postService.updatePost(userId, postForm.title, postForm.content);
+        postId = Long.parseLong(postForm.strId);
+        int result = postService.updatePost(postId, postForm.title, postForm.content);
         if(result == 1) {
             messageForm.message = "メモを更新しました。";
         } else {
@@ -69,5 +73,15 @@ public class PostAction {
         return "show/" + postForm.strId + "?redirect=true";
     }
 
-
+    @Execute(validator = false, urlPattern = "delete/{strId}")
+    public String destroy() {
+        postId = Long.parseLong(postForm.strId);
+        int result = postService.destroyPost(postId);
+        if(result == 1) {
+            messageForm.message = "メモを削除しました。";
+        } else {
+            messageForm.message = "メモ削除に失敗しました。";
+        }
+        return "list?redirect=true";
+    }
 }

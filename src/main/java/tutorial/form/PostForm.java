@@ -15,9 +15,10 @@ public class PostForm implements Serializable {
 
 	public Long user_id;
 
+	// メモ一覧表示用
 	public List<PostDto> postList;
 
-	//パラメータ用
+	// URLパラメータ用
 	public String strId;
 
 }

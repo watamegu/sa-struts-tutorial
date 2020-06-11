@@ -30,11 +30,11 @@ public class PostService extends AbstractService<User> {
     }
 
     // メモ詳細取得
-    public Post getPostById(Long postId) {
+    public Post getPostById(Long id) {
         Post result =
                 jdbcManager
                     .from(Post.class)
-                    .where("id = ?", postId)
+                    .where("id = ?", id)
                     .getSingleResult();
                 return result;
     }
@@ -51,6 +51,18 @@ public class PostService extends AbstractService<User> {
                             String.class,
                             Long.class)
                     .params(title, content, id)
+                    .execute();
+        return result;
+    }
+
+    // メモ削除
+    public int destroyPost(Long id) {
+        int result =
+                jdbcManager
+                    .updateBySql(
+                        "DELETE FROM post WHERE id = ?",
+                            Long.class)
+                    .params(id)
                     .execute();
         return result;
     }
