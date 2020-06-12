@@ -47,8 +47,8 @@ public class UserAction {
 
     @Execute(input = "index.jsp")
     public String create() {
-        userService.createUser();
-        return "menu?redirect=true";
+        userService.createUser(userForm.name, userForm.email, userForm.password, userForm.admin);
+        return "../login?redirect=true";
     }
 
     @Execute(validator = false)
@@ -59,14 +59,16 @@ public class UserAction {
 
     @Execute(validator = false, urlPattern = "edit/{strId}")
     public String edit() {
-        User user = userService.getUser();
+        Long id = Long.parseLong(userForm.strId);
+        User user = userService.getUser(id);
         Beans.copy(user, userForm).execute();
         return "edit.jsp";
     }
 
     @Execute(validator = false, urlPattern = "update/{strId}")
     public String update() {
-        int result = userService.updateUser();
+        Long id = Long.parseLong(userForm.strId);
+        int result = userService.updateUser(id, userForm.name, userForm.email, userForm.password);
         if(result == 1) {
             setMessages("ユーザーを更新しました。");
         } else {
@@ -77,8 +79,9 @@ public class UserAction {
 
     @Execute(validator = false, urlPattern = "delete/{strId}")
     public String destroy() {
-        if(userForm.id != Long.parseLong(userForm.strId)) {
-            int result = userService.DestroyUser();
+        Long id = Long.parseLong(userForm.strId);
+        if(id != userDto.id) {
+            int result = userService.destroyUser(id);
             if(result == 1) {
                 setMessages("ユーザーを削除しました。");
             } else {

@@ -36,8 +36,7 @@ public class UserService extends AbstractService<User> {
     }
 
     //1件検索
-    public User getUser() {
-        Long id = Long.parseLong(userForm.strId);
+    public User getUser(Long id) {
         User result =
                 jdbcManager
                     .from(User.class)
@@ -58,32 +57,22 @@ public class UserService extends AbstractService<User> {
     }
 
     //ユーザー登録
-    public int createUser() {
-
-        String name = userForm.name;
-        String email = userForm.email;
-        String password = userForm.password;
-
+    public int createUser(String name, String email, String password, Boolean admin) {
         int result =
             jdbcManager
                 .updateBySql(
-                    "INSERT INTO user(name,email,password) VALUES(?,?,?)",
+                    "INSERT INTO user(name,email,password,admin) VALUES(?,?,?,?)",
                         String.class,
                         String.class,
-                        String.class)
-                .params(name, email, password)
+                        String.class,
+                        Boolean.class)
+                .params(name, email, password, admin)
                 .execute();
         return result;
     }
 
     //ユーザー更新
-    public int updateUser() {
-
-        Long id = Long.parseLong(userForm.strId);
-        String name = userForm.name;
-        String email = userForm.email;
-        String password = userForm.password;
-
+    public int updateUser(Long id, String name, String email, String password) {
         int result =
                 jdbcManager
                     .updateBySql(
@@ -100,10 +89,7 @@ public class UserService extends AbstractService<User> {
     }
 
     //ユーザー削除
-    public int DestroyUser() {
-
-        Long id = Long.parseLong(userForm.strId);
-
+    public int destroyUser(Long id) {
         int result =
                 jdbcManager
                     .updateBySql(

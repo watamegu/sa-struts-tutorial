@@ -16,6 +16,9 @@
 <html:text property="email" value=""></html:text><br />
 <label for="password">パスワード</label>
 <input type="password" name="password" value=""><br />
+<html:radio property="admin" value="false"/>一般ユーザー
+<html:radio property="admin" value="true"/>管理ユーザー
+<br />
 <input type="submit" name="create" value="作成"/>
 </s:form>
 <p></p>

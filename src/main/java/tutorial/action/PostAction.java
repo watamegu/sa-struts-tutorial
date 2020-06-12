@@ -52,8 +52,8 @@ public class PostAction {
     @Execute(validator = false, urlPattern = "show/{strId}")
     public String show() {
         userId = Long.parseLong(postForm.strId);
-        Post result = postService.getPostById(userId);
-        Beans.copy(result, postForm).execute();
+        Post post = postService.getPostById(userId);
+        Beans.copy(post, postForm).execute();
         return "show.jsp";
     }
 
