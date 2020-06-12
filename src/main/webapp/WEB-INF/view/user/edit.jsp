@@ -6,9 +6,11 @@
 </head>
 <body>
 
-<h1>Edit</h1>
+<h1>ユーザー編集</h1>
 
-<p>${f:h(message)}</p><br />
+<html:messages id="message" message="true">
+<p>${message}</p>
+</html:messages>
 <s:form method="POST" action="/user/update/${f:h(strId)}/">
 <label for="name">ユーザー名</label>
 <html:text property="name" value="${f:h(name)}"></html:text><br />

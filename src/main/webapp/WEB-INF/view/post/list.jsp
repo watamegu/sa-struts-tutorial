@@ -11,13 +11,15 @@
 <html:messages id="message" message="true">
 <p>${message}</p>
 </html:messages>
-<table>
+<table border="1">
   <tr>
+  	<td>フラグ</td>
 		<td>ID</td>
 		<td>タイトル</td>
 	</tr>
 	<c:forEach var = "post" items = "${ postList }">
 		<tr>
+			<td>${f:h(post.flag)}</td>
 			<td>${f:h(post.id)}</td>
 			<td><a href="show/${f:h(post.id)}">${f:h(post.title)}</a></td>
 		</tr>
