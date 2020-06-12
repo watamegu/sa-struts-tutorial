@@ -21,6 +21,8 @@ public class UserForm implements Serializable {
 
 	public String password;
 
+	public Boolean admin;
+
 	public List<UserDto> userList;
 
 	//パラメータ用

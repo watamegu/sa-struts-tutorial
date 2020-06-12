@@ -19,5 +19,6 @@
 <p></p>
 <input type="submit" name="login" value="ログイン"/>
 </s:form>
+<a href="../user/new">新規登録</a>
 </body>
 </html>

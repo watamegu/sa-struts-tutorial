@@ -19,6 +19,8 @@ public class UserDto implements Serializable {
 
 	public String password;
 
+	public Boolean admin;
+
 	public List<UserDto> userList;
 
 }

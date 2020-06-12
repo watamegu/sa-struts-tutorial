@@ -21,6 +21,8 @@ public class User {
 
 	public String password;
 
+	public Boolean admin;
+
 	@OneToMany(mappedBy = "user")
 	public List<Post> postList;
 
@@ -56,5 +58,13 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
 
 }

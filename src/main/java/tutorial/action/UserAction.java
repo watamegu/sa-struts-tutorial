@@ -46,7 +46,7 @@ public class UserAction {
     }
 
     @Execute(input = "index.jsp")
-    public String regist() {
+    public String create() {
         userService.createUser();
         return "menu?redirect=true";
     }
