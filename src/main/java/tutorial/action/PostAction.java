@@ -70,8 +70,10 @@ public class PostAction {
 
     @Execute(validator = false)
     public String create() {
-
-        int result = postService.createPost(postForm.title, postForm.content, userDto.id);
+        if(postForm.flag == null ) {
+            postForm.flag = false;
+        }
+        int result = postService.createPost(postForm.title, postForm.content, userDto.id, postForm.flag);
         if(result == 1) {
             setMessages("メモを作成しました");
         } else {
@@ -91,7 +93,10 @@ public class PostAction {
     @Execute(validator = false, urlPattern = "update/{strId}")
     public String update() {
         postId = Long.parseLong(postForm.strId);
-        int result = postService.updatePost(postId, postForm.title, postForm.content);
+        if(postForm.flag == null ) {
+            postForm.flag = false;
+        }
+        int result = postService.updatePost(postId, postForm.title, postForm.content, postForm.flag);
         if(result == 1) {
             setMessages("メモを更新しました。");
         } else {

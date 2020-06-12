@@ -16,6 +16,7 @@
 	<html:text property="title" value=""></html:text><br />
 	<label for="content">本文</label><br />
 	<html:textarea property="content" value=""></html:textarea><br />
+	<html:checkbox property="flag"/>重要フラグ<br />
 	<input type="submit" name="create" value="作成する"/>
 	<a href="list">キャンセル</a>
 </s:form>

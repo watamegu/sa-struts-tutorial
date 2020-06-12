@@ -16,6 +16,7 @@
 	<html:text property="title" value="${f:h(title)}"></html:text><br />
 	<label for="content">本文</label><br />
 	<html:textarea property="content" value="${f:h(content)}"></html:textarea><br />
+	<html:checkbox property="flag"/>重要フラグ<br />
 	<input type="submit" name="update" value="保存する"/>
 	<a href="../show/${f:h(strId)}">キャンセル</a>
 </s:form>

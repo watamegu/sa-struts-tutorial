@@ -40,31 +40,33 @@ public class PostService extends AbstractService<User> {
     }
 
     // 新規メモ作成
-    public int createPost(String title, String content, Long userId) {
+    public int createPost(String title, String content, Long userId, Boolean flag) {
         int result =
             jdbcManager
                 .updateBySql(
-                    "INSERT INTO post(title, content, user_id) VALUES(?,?,?)",
+                    "INSERT INTO post(title, content, user_id,flag) VALUES(?,?,?,?)",
                         String.class,
                         String.class,
-                        Long.class)
-                .params(title, content, userId)
+                        Long.class,
+                        Boolean.class)
+                .params(title, content, userId, flag)
                 .execute();
         return result;
     }
 
     // メモ更新
-    public int updatePost(Long id, String title, String content) {
+    public int updatePost(Long id, String title, String content, Boolean flag) {
         int result =
                 jdbcManager
                     .updateBySql(
                         "UPDATE post "
-                      + "SET title = ?, content = ? "
+                      + "SET title = ?, content = ?, flag = ? "
                       + "WHERE id = ?",
                             String.class,
                             String.class,
+                            Boolean.class,
                             Long.class)
-                    .params(title, content, id)
+                    .params(title, content, flag, id)
                     .execute();
         return result;
     }
