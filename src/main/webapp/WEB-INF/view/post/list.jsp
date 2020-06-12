@@ -19,7 +19,11 @@
 	</tr>
 	<c:forEach var = "post" items = "${ postList }">
 		<tr>
-			<td>${f:h(post.flag)}</td>
+			<td>
+				<c:if test="${post.flag == true}">
+					<p>★</p>
+				</c:if>
+			</td>
 			<td>${f:h(post.id)}</td>
 			<td><a href="show/${f:h(post.id)}">${f:h(post.title)}</a></td>
 		</tr>
