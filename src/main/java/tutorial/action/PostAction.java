@@ -15,6 +15,7 @@ import tutorial.dto.UserDto;
 import tutorial.entity.Post;
 import tutorial.form.MessageForm;
 import tutorial.form.PostForm;
+import tutorial.form.UserForm;
 import tutorial.service.PostService;
 
 public class PostAction {
@@ -22,6 +23,10 @@ public class PostAction {
 	@ActionForm
 	@Resource
 	protected PostForm postForm;
+
+	@ActionForm
+    @Resource
+    protected UserForm userForm;
 
 	@ActionForm
     @Resource
@@ -43,6 +48,7 @@ public class PostAction {
 	@Execute(validator = false)
     public String list() {
         postForm.postList = postService.getAllPostsByUserId(userDto.id);
+        Beans.copy(userDto.admin, userForm.admin).execute();
         if(postForm.postList.size() == 0) {
             setMessages("メモが1件も存在しません。");
         }

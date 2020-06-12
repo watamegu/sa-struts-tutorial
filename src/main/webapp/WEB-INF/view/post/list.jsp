@@ -1,7 +1,7 @@
 <%@page pageEncoding="UTF-8"%>
 <html>
 <head>
-<title>Tutorial:メモ一覧</title>
+<title>メモ一覧</title>
 <link rel="stylesheet" type="text/css" href="${f:url('/css/sa.css')}" />
 </head>
 <body>
@@ -25,7 +25,10 @@
 </table>
 <p></p>
 <p></p>
-<a href="new">新規メモ</a>
+<a href="new">新規メモ</a><br />
+<c:if test="${admin = true}">
+	<a href="../user/list">ユーザー管理</a>
+</c:if>
 <p></p>
 <p></p>
 <a href="../user/logout">ログアウト</a>

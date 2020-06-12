@@ -6,14 +6,14 @@
 </head>
 <body>
 
-<h1>Tutorial: Profile</h1>
+<h1>ユーザー管理</h1>
 
 <p>${f:h(message)}</p><br />
 <p></p>
 <table>
   <tr>
 		<td>ID</td>
-		<td>名前</td>
+		<td>ユーザー名</td>
 		<td>Email<td>
 	</tr>
 	<c:forEach var = "user" items = "${ userList }">
@@ -27,8 +27,6 @@
 	</c:forEach>
 </table>
 <p></p>
-<a href="/sa-struts-tutorial/user/menu">戻る</a>
-<a href="logout">ログアウト</a>
-
+<a href="../post/list">戻る</a>
 </body>
 </html>

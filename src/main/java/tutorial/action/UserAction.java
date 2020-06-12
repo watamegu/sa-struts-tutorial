@@ -52,9 +52,9 @@ public class UserAction {
     }
 
     @Execute(validator = false)
-    public String show() {
+    public String list() {
         userForm.userList = userService.getAllUser();
-        return "show.jsp";
+        return "list.jsp";
     }
 
     @Execute(validator = false, urlPattern = "edit/{strId}")
@@ -90,7 +90,7 @@ public class UserAction {
         } else {
             setMessages("ログインユーザーの削除はできません。");
         }
-        return "show";
+        return "list";
     }
 
 	@Execute(validator = false)

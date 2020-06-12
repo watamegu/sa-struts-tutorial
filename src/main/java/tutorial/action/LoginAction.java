@@ -49,6 +49,7 @@ public class LoginAction {
                 userForm.name = user.name;
                 userForm.email = user.email;
                 userForm.password = user.password;
+                userForm.admin = user.admin;
                 Beans.copy(userForm, userDto).execute();
             } else {
                 setMessages("ユーザーが存在しません。");
