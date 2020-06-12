@@ -19,6 +19,8 @@ public class Post {
 
 	public Long user_id;
 
+	public Boolean flag;
+
 	@ManyToOne
 	public User user;
 
@@ -54,5 +56,13 @@ public class Post {
 	public void setUserId(Long user_id) {
 		this.user_id = user_id;
 	}
+
+	public Boolean getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Boolean flag) {
+        this.flag = flag;
+    }
 
 }

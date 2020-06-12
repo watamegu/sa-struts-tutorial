@@ -15,6 +15,8 @@ public class PostForm implements Serializable {
 
 	public Long user_id;
 
+	public Boolean flag;
+
 	// メモ一覧表示用
 	public List<PostDto> postList;
 

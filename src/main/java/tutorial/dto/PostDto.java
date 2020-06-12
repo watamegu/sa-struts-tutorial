@@ -15,6 +15,8 @@ public class PostDto implements Serializable {
 
 	public Long user_id;
 
+	public Boolean flag;
+
 	public List<PostDto> postList;
 
 }
